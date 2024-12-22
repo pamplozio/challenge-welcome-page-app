@@ -29,4 +29,9 @@
       font-size: 14px; /* Adjusts font size on smaller screens */
     }
   }
+
+  a.active {
+    background-color: #3f51b5; /* Highlight active tab */
+    color: white; /* Change the active link color */
+  }
   
