@@ -65,7 +65,7 @@ export class LoginComponent {
           // Optional: Reset success message after a delay
           setTimeout(() => {
             this.successMessage = null;
-          }, 6000); // Success message disappears after 3 seconds
+          }, 6000); // Success message disappears after 6 seconds
         },
         (error) => {
           console.error('Login failed', error);
@@ -87,9 +87,12 @@ export class LoginComponent {
           // Optional: Reset error message after a delay
           setTimeout(() => {
             this.errorMessage = null;
-          }, 6000); // Error message disappears after 3 seconds
+          }, 6000); // Error message disappears after 6 seconds
         }
       );
+    } else {
+      // If form is not valid, display validation error message
+      this.errorMessage = 'Please fill in the form correctly.';
     }
   }
 }

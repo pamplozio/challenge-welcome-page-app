@@ -42,14 +42,14 @@ export class SignupComponent {
   onSubmit(): void {
     if (this.signupForm.valid) {
       const { name, lastname, email, password, repassword } = this.signupForm.value;
-  
+
       // Check if passwords match
       if (password !== repassword) {
         this.errorMessage = 'Passwords do not match!';
         this.successMessage = null;
         return;
       }
-  
+
       // Call the signup service with the form data
       this.authService.signup(name, lastname, email, password, repassword).subscribe({
         next: (response) => {
@@ -69,7 +69,7 @@ export class SignupComponent {
         },
         error: (error) => {
           console.error("Signup error:", error);  // Log any errors from signup
-          this.errorMessage = 'An error occurred during registration.';
+          this.errorMessage = 'Please fill in all required fields correctly.';
           this.successMessage = null;
         }
       });
