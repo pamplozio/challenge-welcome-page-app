@@ -1,33 +1,38 @@
 <div style="display: flex; justify-content: flex-start; align-items: center; height: 100vh; padding-left: 10%;">
-    <mat-card style="width: 25%; padding: 20px;">
-      <mat-card-header>
-        <mat-card-title>Sign Up</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form>
-          <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Email" required>
-          </mat-form-field>
-          <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Password" required>
-          </mat-form-field>
-          
-          <button mat-raised-button color="primary" style="width: 100%; padding: 10px;">Sign Up</button>
-  
-          <!-- Google Button with Icon -->
-          <button mat-raised-button color="accent" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
-            <mat-icon style="font-size: 20px;">google</mat-icon> Sign Up with Google
-          </button>
-          
-          <!-- Facebook Button with Icon -->
-          <button mat-raised-button color="primary" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
-            <mat-icon style="font-size: 20px;">facebook</mat-icon> Sign Up with Facebook
-          </button>
-          
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
+  <mat-card style="width: 25%; padding: 20px;">
+    <mat-card-header>
+      <mat-card-title>Sign Up</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Password" required>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" style="width: 100%; padding: 10px;" type="submit">
+          Sign Up
+        </button>
+
+        <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+          {{ errorMessage }}
+        </div>
+        
+        <!-- Google Button with Icon -->
+        <button mat-raised-button color="accent" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
+          <mat-icon style="font-size: 20px;">google</mat-icon> Sign Up with Google
+        </button>
+        
+        <!-- Facebook Button with Icon -->
+        <button mat-raised-button color="primary" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
+          <mat-icon style="font-size: 20px;">facebook</mat-icon> Sign Up with Facebook
+        </button>
+        
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
