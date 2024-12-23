@@ -42,7 +42,7 @@
 
         <!-- Success/Error Message -->
         <div *ngIf="errorMessage || successMessage" class="message-container">
-          <div *ngIf="successMessage" class="success-message">
+          <div *ngIf="successMessage" class="success-message" [ngStyle]="{ 'color': 'green' }">
             {{ successMessage }}
           </div>
           <div *ngIf="errorMessage" class="error-message">

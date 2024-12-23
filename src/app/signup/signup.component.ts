@@ -54,9 +54,18 @@ export class SignupComponent {
       this.authService.signup(name, lastname, email, password, repassword).subscribe({
         next: (response) => {
           console.log("Signup response:", response);  // Server's response to registration
-          this.successMessage = 'You have successfully registered!';
+          
+          // Reset form and clear any previous errors immediately
+          this.signupForm.reset();
+          this.clearErrors();
+
           this.errorMessage = null;
-          this.router.navigate(['/login']); // Navigate to login page after successful registration
+          this.successMessage = 'You have successfully registered!';
+          
+          // Set a timeout to clear the success message after 6 seconds
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 6000);  // Success message stays for 6 seconds
         },
         error: (error) => {
           console.error("Signup error:", error);  // Log any errors from signup
@@ -69,6 +78,16 @@ export class SignupComponent {
       this.successMessage = null;
     }
   }
-  
-  
+
+  // Method to clear any validation errors from the form controls
+  private clearErrors(): void {
+    Object.keys(this.signupForm.controls).forEach((controlName) => {
+      const control = this.signupForm.get(controlName);
+      if (control) {
+        control.setErrors(null); // Clear any existing errors
+        control.markAsUntouched(); // Reset the touched state
+        control.markAsPristine();  // Reset the dirty state
+      }
+    });
+  }
 }
