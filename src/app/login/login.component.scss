@@ -1,0 +1,71 @@
+/* Full-width login container with even more reduced padding */
+.login-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Full screen width */
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    padding: 5px 15px; /* Further reduced padding */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    border-top: 1px solid #ccc;
+    max-width: 400px; /* Reduced max-width for even more compact form */
+    margin: 0 auto; /* Centered background */
+  }
+  
+  /* Login card container, keeping it more compact */
+  .login-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Reduced gap between form fields */
+    width: 100%; /* Full width */
+  }
+  
+  /* Input fields, reducing width space */
+  .input-field {
+    width: 100%;
+    margin-bottom: 5px; /* Reduced bottom margin */
+  }
+  
+  /* Button group aligned to the left with tighter gap */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align buttons to the left */
+    gap: 5px; /* Reduced gap */
+    width: 100%;
+    padding-top: 5px; /* Reduced padding above buttons */
+  }
+  
+  /* Action buttons (Login, Google, Facebook) with compact width */
+  .action-button {
+    width: 100%; /* Button still takes full width of the form */
+    max-width: 260px; /* Reduced max-width further for a more compact look */
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Reduced gap between text and icon */
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 600px) {
+    .login-card {
+      padding: 5px; /* Further reduced padding inside the card */
+    }
+  
+    .action-button {
+      width: 85%; /* Button width reduced to 85% on small screens */
+    }
+  }
+  
+  mat-card-header {
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+  }
+  
+  mat-card-title {
+    text-align: center; /* Ensure the title text itself is centered */
+  }
+  

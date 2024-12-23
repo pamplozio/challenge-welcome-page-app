@@ -1,43 +1,49 @@
-<div style="display: flex; justify-content: flex-start; align-items: center; height: 100vh; padding-left: 10%;">
-  <mat-card style="width: 25%; padding: 20px;">
+<div class="login-container">
+  <mat-card class="login-card">
     <mat-card-header>
       <mat-card-title>Login</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
+        <!-- Email Field -->
+        <mat-form-field appearance="fill" class="input-field">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" placeholder="Email" required>
         </mat-form-field>
-        <mat-form-field appearance="fill" style="width: 100%; margin-bottom: 10px;">
+
+        <!-- Password Field -->
+        <mat-form-field appearance="fill" class="input-field">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password" placeholder="Password" required>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" style="width: 100%; padding: 10px;" type="submit">
-          Login
-        </button>
+        <!-- Buttons Section -->
+        <div class="button-group">
+          <!-- Login Button -->
+          <button mat-raised-button color="primary" class="action-button" type="submit">
+            Login
+          </button>
 
-          <!-- Error or Success Message -->
-          <div *ngIf="errorMessage || successMessage" style="margin-top: 10px;">
-            <div *ngIf="errorMessage" style="color: red;">
-              {{ errorMessage }}
-            </div>
-            <div *ngIf="successMessage" style="color: green;">
-              {{ successMessage }}
-            </div>
+          <!-- Google Button -->
+          <button mat-raised-button color="accent" class="action-button">
+            <mat-icon>google</mat-icon> Login with Google
+          </button>
+
+          <!-- Facebook Button -->
+          <button mat-raised-button color="primary" class="action-button">
+            <mat-icon>facebook</mat-icon> Login with Facebook
+          </button>
+        </div>
+
+        <!-- Error/Success Message -->
+        <div *ngIf="errorMessage || successMessage" class="message-container">
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
           </div>
-
-        <!-- Google Button with Icon -->
-        <button mat-raised-button color="accent" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
-          <mat-icon style="font-size: 20px;">google</mat-icon> Login with Google
-        </button>
-        
-        <!-- Facebook Button with Icon -->
-        <button mat-raised-button color="primary" style="display: flex; align-items: center; gap: 10px; width: 100%; padding: 10px; margin-top: 10px;">
-          <mat-icon style="font-size: 20px;">facebook</mat-icon> Login with Facebook
-        </button>
-        
+          <div *ngIf="successMessage" class="success-message">
+            {{ successMessage }}
+          </div>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
