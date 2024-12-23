@@ -12,12 +12,12 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-login',
   standalone: true,
   imports: [
-    ReactiveFormsModule, 
-    CommonModule, // Add CommonModule here
-    MatFormFieldModule, 
-    MatInputModule, 
-    MatIconModule, 
-    MatButtonModule, 
+    ReactiveFormsModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
     MatCardModule
   ],
   templateUrl: './login.component.html',
@@ -25,8 +25,8 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMessage: string = 'Wrong credentials, try again';
-  successMessage: string = 'Login successful';
+  errorMessage: string | null = null; // Initialize as null, no message initially
+  successMessage: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
@@ -38,13 +38,56 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
+
+      // Reset error and success messages before the form submit
+      this.errorMessage = null;
+      this.successMessage = null;
+
       this.authService.login(email, password).subscribe(
         (response) => {
           // Handle success
           console.log('Login successful', response);
+          this.successMessage = 'Login successful!'; // Show success message
+
+          // Reset the form and clear validation error styling
+          this.loginForm.reset();
+
+          // Explicitly set form controls to pristine, untouched, and valid state
+          Object.keys(this.loginForm.controls).forEach(controlName => {
+            const control = this.loginForm.get(controlName);
+            if (control) {
+              control.markAsPristine();    // Mark as pristine so no red styling
+              control.markAsUntouched();   // Mark as untouched to not trigger validation
+              control.setErrors(null);     // Clear validation errors explicitly
+            }
+          });
+
+          // Optional: Reset success message after a delay
+          setTimeout(() => {
+            this.successMessage = null;
+          }, 6000); // Success message disappears after 3 seconds
         },
         (error) => {
-          this.errorMessage = 'Invalid login credentials'; // Customize as per your error handling
+          console.error('Login failed', error);
+          this.errorMessage = 'Invalid login credentials'; // Show error message
+
+          // Reset the form and clear validation error styling for invalid login
+          this.loginForm.reset();
+
+          // Explicitly set form controls to pristine, untouched, and valid state
+          Object.keys(this.loginForm.controls).forEach(controlName => {
+            const control = this.loginForm.get(controlName);
+            if (control) {
+              control.markAsPristine();    // Mark as pristine so no red styling
+              control.markAsUntouched();   // Mark as untouched to not trigger validation
+              control.setErrors(null);     // Clear validation errors explicitly
+            }
+          });
+
+          // Optional: Reset error message after a delay
+          setTimeout(() => {
+            this.errorMessage = null;
+          }, 6000); // Error message disappears after 3 seconds
         }
       );
     }
