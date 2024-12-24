@@ -47,8 +47,8 @@
     gap: 8px; /* Spacing between icons and text */
   }
   
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 600px) {
+/* Responsive adjustments for smaller screens */
+@media (max-width: 600px) {
     .login-container {
       padding: 5px 10px; /* Reduced padding for small screens */
     }
@@ -59,8 +59,32 @@
   
     .action-button {
       width: 85%; /* Button takes up slightly less width */
+      padding: 8px 16px; /* Smaller padding on the action buttons */
+      font-size: 12px; /* Reduce font size */
     }
+
+    .social-buttons {
+        gap: 10px;  /* Reduce gap between social buttons */
+      }
+    
+      .social-button {
+        font-size: 12px; /* Slightly reduce font size */
+        padding: 8px 16px; /* Reduce button padding */
+      }
+  
+    /* Further adjustments for smaller screens */
+    @media (max-width: 400px) {
+        .social-buttons {
+        font-size: 7px !important; ; /* Reduced font size for buttons */
+      }
+    }
+
+    .social-button {
+        font-size: 10px;  /* Much smaller font size */
+        padding: 6px 12px; /* Even smaller padding */
+      }
   }
+  
   
   /* Title adjustments */
   mat-card-header {
@@ -71,5 +95,22 @@
   
   mat-card-title {
     text-align: center; /* Ensures title text is centrally aligned */
+  }
+
+  /* Adjust the spacing between social buttons */
+.social-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Adds space between the buttons */
+    margin-top: 20px; /* Adds space above the social buttons */
+  }
+  
+  .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Adds a small space between the icon and text */
+    padding: 25px 20px; /* Adds padding for a better look */
+    font-size: 14px; /* Adjust button text size */
   }
   
