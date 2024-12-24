@@ -1,71 +1,75 @@
-/* Full-width login container with even more reduced padding */
 .login-container {
-    position: fixed;
+    position: fixed; /* Keeps it pinned at the bottom of the screen */
     bottom: 0;
     left: 0;
-    width: 100%; /* Full screen width */
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
-    padding: 5px 15px; /* Further reduced padding */
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
-    border-top: 1px solid #ccc;
-    max-width: 400px; /* Reduced max-width for even more compact form */
-    margin: 0 auto; /* Centered background */
+    right: 0; /* Ensures horizontal centering */
+    width: 90%; /* Takes up 90% of the screen width */
+    max-width: 400px; /* Restricts maximum width for better visuals */
+    margin: 0 auto; /* Centers it horizontally */
+    z-index: 1; /* Keeps it above the background */
+    background: rgba(255, 255, 255, 0.9); /* Light background with slight transparency */
+    padding: 10px 15px; /* Slightly reduced padding for compact look */
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle elevation */
+    border-top: 1px solid #ccc; /* Adds a clean top border */
+    border-radius: 10px; /* Optional: Adds rounded corners */
   }
   
-  /* Login card container, keeping it more compact */
+  /* Adjustments for the login card */
   .login-card {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Reduced gap between form fields */
-    width: 100%; /* Full width */
+    gap: 12px; /* Spacing between form fields */
+    width: 100%; /* Ensure card spans full width inside the container */
   }
   
-  /* Input fields, reducing width space */
+  /* Input fields styling for better usability */
   .input-field {
     width: 100%;
-    margin-bottom: 5px; /* Reduced bottom margin */
+    margin-bottom: 8px; /* Adds some spacing below each input field */
   }
   
-  /* Button group aligned to the left with tighter gap */
+  /* Align buttons and keep them compact */
   .button-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Align buttons to the left */
-    gap: 5px; /* Reduced gap */
-    width: 100%;
-    padding-top: 5px; /* Reduced padding above buttons */
+    align-items: center; /* Aligns buttons centrally */
+    gap: 10px; /* Space between buttons */
   }
   
-  /* Action buttons (Login, Google, Facebook) with compact width */
+  /* Style for the action buttons (Login, Google, Facebook) */
   .action-button {
-    width: 100%; /* Button still takes full width of the form */
-    max-width: 260px; /* Reduced max-width further for a more compact look */
-    padding: 8px;
+    width: 100%; /* Button takes full width */
+    max-width: 260px; /* Limits maximum button width */
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px; /* Reduced gap between text and icon */
+    gap: 8px; /* Spacing between icons and text */
   }
   
   /* Responsive adjustments for smaller screens */
   @media (max-width: 600px) {
+    .login-container {
+      padding: 5px 10px; /* Reduced padding for small screens */
+    }
+  
     .login-card {
-      padding: 5px; /* Further reduced padding inside the card */
+      gap: 10px; /* Slightly reduced gap between form fields */
     }
   
     .action-button {
-      width: 85%; /* Button width reduced to 85% on small screens */
+      width: 85%; /* Button takes up slightly less width */
     }
   }
   
+  /* Title adjustments */
   mat-card-header {
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically */
+    justify-content: center; /* Centers the header title */
+    align-items: center;
   }
   
   mat-card-title {
-    text-align: center; /* Ensure the title text itself is centered */
+    text-align: center; /* Ensures title text is centrally aligned */
   }
   
