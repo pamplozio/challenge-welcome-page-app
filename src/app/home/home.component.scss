@@ -1,0 +1,22 @@
+.background-animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevent scrolling on the container */
+    z-index: 0; /* Ensure it's below other elements */
+  }
+  
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: auto; /* Enable interactions */
+    scrollbar-width: none; /* For Firefox */
+  }
+  
+  iframe::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Edge */
+  }
+  
