@@ -6,17 +6,17 @@
     width: 100%;
     height: 100%;
     z-index: 0; /* Ensure the background is behind everything else */
-
+  
     iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        pointer-events: auto; /* Ensure iframe allows user interaction */
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: auto; /* Ensure iframe allows user interaction */
     }
-}
-
-/* Full-width bar for the sign-up form */
-.signup-container {
+  }
+  
+  /* Full-width bar for the sign-up form with Glassmorphism styling */
+  .signup-container {
     position: fixed; /* Keeps it pinned at the bottom of the screen */
     bottom: 0; /* Aligns it to the very bottom */
     left: 0;
@@ -25,55 +25,75 @@
     max-width: 600px; /* Restricts the maximum width for centering */
     margin: 0 auto; /* Centers it horizontally */
     z-index: 1; /* Keeps it above the background */
-    background: rgba(255, 255, 255, 0.9); /* Light background with slight transparency */
+    background: rgba(255, 255, 255, 0.15); /* Adds transparency for Glassmorphism */
+    backdrop-filter: blur(20px); /* Blurs background for glass-like effect */
+    -webkit-backdrop-filter: blur(20px); /* Ensures compatibility with WebKit */
     padding: 20px; /* Adds padding inside the bar */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Elevates the bar visually */
-    border-top: 1px solid #ccc; /* Adds a subtle top border */
-    border-radius: 10px; /* Optional: Adds rounded corners */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for Glassmorphism */
+    border-radius: 15px; /* Rounded corners for a sleek look */
   }
   
-
-/* Center the form fields inside the bar */
-.signup-card {
+  /* Center the form fields inside the bar with Glassmorphism */
+  .signup-card {
     display: flex;
     justify-content: center; /* Centers the content horizontally */
     align-items: center; /* Centers the content vertically */
     gap: 15px; /* Spacing between form fields */
     flex-wrap: wrap; /* Wrap content on smaller screens */
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
+    background: rgba(255, 255, 255, 0.1); /* Adds transparency for the card */
+    backdrop-filter: blur(15px); /* Subtle blur for glass effect */
+    -webkit-backdrop-filter: blur(15px); /* Compatibility with WebKit */
+    padding: 15px; /* Spacing inside the card */
+    border-radius: 10px; /* Rounded corners for consistency */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Border to enhance the glass look */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
     .signup-container {
-        padding: 10px; /* Less padding for smaller screens */
+      padding: 10px; /* Less padding for smaller screens */
     }
+  
     .signup-card {
-        flex-direction: column; /* Stack items vertically on small screens */
-        gap: 10px; /* Adjust spacing */
+      flex-direction: column; /* Stack items vertically on small screens */
+      gap: 10px; /* Adjust spacing */
+      padding: 10px; /* Adjust padding */
     }
-}
-
-input[type="text"],
-input[type="password"],
-button {
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  button {
     flex: 1; /* Fields take up proportional width */
     min-width: 150px; /* Ensure minimum width for fields */
-}
-
-/* Adjust the spacing between social buttons */
-.social-buttons {
+  }
+  
+  /* Adjust the spacing between social buttons */
+  .social-buttons {
     display: flex;
     justify-content: center; /* Center the buttons horizontally */
-    gap: 20px; /* Adds space between the buttons */
-    margin-top: 20px; /* Adds space above the social buttons */
+    gap: 15px; /* Slightly reduced spacing between buttons */
+    margin-top: 20px; /* Space above the social buttons remains consistent */
   }
   
   .social-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px; /* Adds a small space between the icon and text */
-    padding: 30px 20px; /* Adds padding for a better look */
-    font-size: 14px; /* Adjust button text size */
+    gap: 5px; /* Space between the icon and text remains consistent */
+    padding: 15px 10px; /* Reduced padding for a smaller button */
+    font-size: 12px; /* Smaller text for the buttons */
+    background: rgba(255, 255, 255, 0.2); /* Glassmorphism background */
+    backdrop-filter: blur(10px); /* Slight blur for button background */
+    -webkit-backdrop-filter: blur(10px); /* Compatibility with WebKit */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Border for buttons */
+    border-radius: 10px; /* Slightly smaller corners for consistency with size */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Hover animations */
+  
+    &:hover {
+      transform: scale(1.05); /* Slight scale-up on hover */
+      background: rgba(255, 255, 255, 0.3); /* Slightly darker background */
+    }
   }
   
