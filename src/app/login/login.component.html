@@ -1,5 +1,6 @@
 <div class="login-container">
   <a mat-button href="/signup" class="active">Sign Up</a>
+
   <a mat-button href="/" class="active">Home</a>
   <mat-card class="login-card">
     <mat-card-header>
@@ -10,13 +11,13 @@
         <!-- Email Field -->
         <mat-form-field class="input-field" appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="Email" required>
+          <input matInput formControlName="email" required>
         </mat-form-field>
 
         <!-- Password Field -->
         <mat-form-field class="input-field" appearance="fill">
           <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="Password" required>
+          <input matInput type="password" formControlName="password" required>
         </mat-form-field>
 
         <!-- Submit Button -->
@@ -25,15 +26,15 @@
         </button>
 
         <!-- Error Message -->
-        <div *ngIf="errorMessage" class="message-container">
+        <div *ngIf="errorMessage" class="message-container" style="margin-top: 10px;">
           <div class="error-message" [ngStyle]="{ 'color': 'red', 'font-weight': 'bold' }">
             {{ errorMessage }}
           </div>
         </div>
 
         <!-- Success Message -->
-        <div *ngIf="successMessage" class="message-container">
-          <div class="success-message" [ngStyle]="{ 'color': 'green' }">
+        <div *ngIf="successMessage" class="message-container" style="margin-top: 10px;">
+          <div class="success-message" [ngStyle]="{ 'color': 'white' }">
             {{ successMessage }}
           </div>
         </div>
