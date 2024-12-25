@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -65,7 +67,7 @@ export class LoginComponent {
           // Optional: Reset success message after a delay
           setTimeout(() => {
             this.successMessage = null;
-          }, 6000); // Success message disappears after 6 seconds
+          }, 6000); // Success message disappears after 3 seconds
         },
         (error) => {
           console.error('Login failed', error);
@@ -87,12 +89,9 @@ export class LoginComponent {
           // Optional: Reset error message after a delay
           setTimeout(() => {
             this.errorMessage = null;
-          }, 6000); // Error message disappears after 6 seconds
+          }, 6000); // Error message disappears after 3 seconds
         }
       );
-    } else {
-      // If form is not valid, display validation error message
-      this.errorMessage = 'Please fill in the form correctly.';
     }
   }
 }

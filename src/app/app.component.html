@@ -1,3 +1,28 @@
+<mat-toolbar>
+  <!-- Conditionally show the toolbar only if it's not the login page -->
+  <ng-container *ngIf="isLoginPage || isSignupPage">
+    <mat-toolbar-row>
+    </mat-toolbar-row>
+  </ng-container>
+
+
+  <ng-container *ngIf="!isLoginPage && !isSignupPage">
+    <mat-toolbar-row>
+      <span routerLink="/" routerLinkActive="active" style="cursor: pointer;">Welcome Page</span>
+      <span style="flex: 1 1 auto;"></span>
+      <a mat-button routerLink="/signup" routerLinkActive="active" style="color: white;">Sign Up</a>
+      <a mat-button routerLink="/login" routerLinkActive="active" style="color: white;">Login</a>
+    </mat-toolbar-row>
+  </ng-container>
+<!-------------------------->
+
+
+
+
+
+
+</mat-toolbar>
+
 <div class="background-animation-container">
   <iframe 
     src="https://my.spline.design/planetrotation-1dd7f92644e840b37def2a08468a3dac/"
@@ -8,14 +33,10 @@
   ></iframe>
 </div>
 
-<mat-toolbar color="primary" class="overlay">
-  <mat-toolbar-row>
-    <span routerLink="/" routerLinkActive="active" style="cursor: pointer;">Welcome Page
-    </span>
-    <span style="flex: 1 1 auto;"></span>
-    <a mat-button routerLink="/signup" routerLinkActive="active">Sign Up</a>
-    <a mat-button routerLink="/login" routerLinkActive="active">Login</a>
-  </mat-toolbar-row>
+<mat-toolbar>
+  <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
+  <button mat-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
+  <button mat-button routerLink="/" routerLinkActive="active">Home</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
