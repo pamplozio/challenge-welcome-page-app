@@ -12,7 +12,6 @@ import { CommonModule } from '@angular/common';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -32,6 +31,7 @@ export class SignupComponent {
   signupForm: FormGroup;
   errorMessage: string | null = null;
   successMessage: string | null = null;
+  passwordErrorMessage: string | null = null; // New password error message
 
   constructor(
     private fb: FormBuilder, 
@@ -54,24 +54,38 @@ export class SignupComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl('icons/google.svg')
     );
 
-        // Register the Facebook icon from an SVG path (adjusted path)
-        this.matIconRegistry.addSvgIcon(
-          'facebook',
-          this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
-        );
+    // Register the Facebook icon from an SVG path (adjusted path)
+    this.matIconRegistry.addSvgIcon(
+      'facebook',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
+    );
   }
 
   onSubmit(): void {
     if (this.signupForm.valid) {
       const { name, lastname, email, password, repassword } = this.signupForm.value;
-
+    
       // Check if passwords match
       if (password !== repassword) {
         this.errorMessage = 'Passwords do not match!';
         this.successMessage = null;
+        this.passwordErrorMessage = null; // Clear password error
         return;
       }
-
+    
+      // Check if password length is less than 6 characters
+      if (password.length < 6) {
+        this.passwordErrorMessage = 'Password has to be at least 6 characters!';
+        this.errorMessage = null; // Clear other error messages
+  
+        // Set a timeout to clear the password error message after 6 seconds
+        setTimeout(() => {
+          this.passwordErrorMessage = null;
+        }, 6000);  // Password error message stays for 6 seconds
+    
+        return;
+      }
+    
       // Call the signup service with the form data
       this.authService.signup(name, lastname, email, password, repassword).subscribe({
         next: (response) => {
@@ -80,7 +94,7 @@ export class SignupComponent {
           // Reset form and clear any previous errors immediately
           this.signupForm.reset();
           this.clearErrors();
-
+    
           this.errorMessage = null;
           this.successMessage = 'You have successfully registered!';
           
@@ -96,10 +110,28 @@ export class SignupComponent {
         }
       });
     } else {
-      this.errorMessage = 'Please fill in all required fields correctly.';
+      // Handle form validation errors based on individual validation rules
+      if (this.signupForm.get('password')?.invalid && this.signupForm.get('password')?.touched) {
+        this.passwordErrorMessage = 'Password has to be at least 6 characters!';
+        this.errorMessage = null;  // Clear other error messages
+      } else if (this.signupForm.invalid) {
+        // If the form is invalid, display the general error message
+        this.errorMessage = 'Please fill in all required fields correctly.';
+        this.passwordErrorMessage = null;  // Clear password-specific error
+      }
       this.successMessage = null;
+    
+      // Set a timeout to clear the error message after 6 seconds
+      setTimeout(() => {
+        this.errorMessage = null;
+        this.passwordErrorMessage = null;
+      }, 6000);  // Error message stays for 6 seconds
     }
   }
+  
+  
+  
+
 
   // Method to clear any validation errors from the form controls
   private clearErrors(): void {
@@ -122,6 +154,4 @@ export class SignupComponent {
   goToHome() {
     this.router.navigate(['/']);
   }
-
 }
-

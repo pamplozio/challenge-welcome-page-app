@@ -33,8 +33,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorMessage: string | null = null; // Initialize as null, no message initially
-  successMessage: string | null = null;
+  errorMessage: string | null = null; // Initial error message is null
+  successMessage: string | null = null; 
 
   constructor(
     private fb: FormBuilder, 
@@ -48,80 +48,74 @@ export class LoginComponent {
       password: ['', [Validators.required]],
     });
 
-    // Register the Google icon from an SVG path (update path accordingly)
+    // Register icons (if required)
     this.matIconRegistry.addSvgIcon(
       'google',
       this.domSanitizer.bypassSecurityTrustResourceUrl('icons/google.svg')
     );
-
-        // Register the Facebook icon from an SVG path (adjusted path)
-        this.matIconRegistry.addSvgIcon(
-          'facebook',
-          this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
-        );
+    this.matIconRegistry.addSvgIcon(
+      'facebook',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
+    );
   }
 
   onSubmit(): void {
+    // Only check for invalid credentials AFTER login is attempted
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-
-      // Reset error and success messages before the form submit
+  
+      // Reset the error and success messages at the start of login attempt
       this.errorMessage = null;
       this.successMessage = null;
-
+  
+      // Login attempt
       this.authService.login(email, password).subscribe(
         (response) => {
-          // Handle success
+          // Successful login
           console.log('Login successful', response);
-          this.successMessage = 'Login successful!'; // Show success message
-
-          // Reset the form and clear validation error styling
+          this.successMessage = 'Login successful!';
+  
+          // Reset the form after login
           this.loginForm.reset();
-
-          // Explicitly set form controls to pristine, untouched, and valid state
-          Object.keys(this.loginForm.controls).forEach(controlName => {
-            const control = this.loginForm.get(controlName);
-            if (control) {
-              control.markAsPristine();    // Mark as pristine so no red styling
-              control.markAsUntouched();   // Mark as untouched to not trigger validation
-              control.setErrors(null);     // Clear validation errors explicitly
-            }
-          });
-
-          // Redirect to home after a successful login
-          setTimeout(() => {
-            this.router.navigate(['/']);  // Navigate to the home page
-          }, 1000);
-
-          // Optional: Reset success message after a delay
+          this.clearFormControls();
+  
+          // Clear the success message after a timeout
           setTimeout(() => {
             this.successMessage = null;
-          }, 6000); // Success message disappears after 3 seconds
+          }, 6000); // Success message disappears after 6 seconds
         },
         (error) => {
+          // Handle failure (e.g., invalid credentials)
           console.error('Login failed', error);
-          this.errorMessage = 'Invalid login credentials'; // Show error message
-
-          // Reset the form and clear validation error styling for invalid login
+          if (error.status === 401) {
+            this.errorMessage = 'Invalid login credentials'; // Show error message
+          } else {
+            this.errorMessage = 'An error occurred. Please try again.';
+          }
+  
+          // Reset the form after failed login
           this.loginForm.reset();
-
-          // Explicitly set form controls to pristine, untouched, and valid state
-          Object.keys(this.loginForm.controls).forEach(controlName => {
-            const control = this.loginForm.get(controlName);
-            if (control) {
-              control.markAsPristine();    // Mark as pristine so no red styling
-              control.markAsUntouched();   // Mark as untouched to not trigger validation
-              control.setErrors(null);     // Clear validation errors explicitly
-            }
-          });
-
-          // Optional: Reset error message after a delay
+          this.clearFormControls();
+  
+          // Optional: Clear error message after some time
           setTimeout(() => {
             this.errorMessage = null;
-          }, 6000); // Error message disappears after 3 seconds
+          }, 6000); // Error message disappears after 6 seconds
         }
       );
     }
+  }
+
+  // Helper function to clear form control state
+  private clearFormControls(): void {
+    Object.keys(this.loginForm.controls).forEach((controlName) => {
+      const control = this.loginForm.get(controlName);
+      if (control) {
+        control.markAsPristine(); // Prevent form errors showing
+        control.markAsUntouched();
+        control.setErrors(null); // Clear previous errors
+      }
+    });
   }
 
   // Navigate to Sign Up page

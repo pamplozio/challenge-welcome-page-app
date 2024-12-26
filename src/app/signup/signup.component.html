@@ -30,6 +30,7 @@
         <mat-form-field class="input-field" appearance="fill">
           <mat-label>Password</mat-label>
           <input matInput type="password" formControlName="password" required>
+          
         </mat-form-field>
 
         <!-- Confirm Password Field -->
@@ -43,19 +44,27 @@
           Sign Up
         </button>
 
-        <!-- Success/Error Message -->
-        <div *ngIf="errorMessage || successMessage" class="message-container">
-          <div *ngIf="successMessage" class="success-message" [ngStyle]="{ 'color': 'green' }">
-            {{ successMessage }}
-          </div>
-          <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
+       <!-- Success/Error Message -->
+       <div *ngIf="errorMessage || successMessage || passwordErrorMessage" class="message-container">
+          
+        <div *ngIf="passwordErrorMessage" class="error-message">
+          {{ passwordErrorMessage }}
         </div>
+
+        <div *ngIf="successMessage" class="success-message" [ngStyle]="{ 'color': 'green' }">
+          {{ successMessage }}
+        </div>
+
+        <div *ngIf="errorMessage && !passwordErrorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        
+      </div>
+
 
                 <!-- Social Media Buttons -->
         <!-- Facebook Button -->
-<button class="social-button">
+<button class="social-button" type="button">
   <div class="icon-container">
     <mat-icon svgIcon="facebook"></mat-icon>
   </div>
@@ -63,7 +72,7 @@
 </button>
 
 <!-- Google Button -->
-<button class="social-button">
+<button class="social-button" type="button">
   <div class="icon-container">
     <mat-icon svgIcon="google"></mat-icon>
   </div>
