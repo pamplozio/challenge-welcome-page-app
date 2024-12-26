@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';  // Import Router for navigation
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,11 @@ export class LoginComponent {
   errorMessage: string | null = null; // Initialize as null, no message initially
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService,
+    private router: Router  // Inject Router service to handle navigation
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
@@ -64,6 +69,11 @@ export class LoginComponent {
             }
           });
 
+          // Redirect to home after a successful login
+          setTimeout(() => {
+            this.router.navigate(['/']);  // Navigate to the home page
+          }, 1000);
+
           // Optional: Reset success message after a delay
           setTimeout(() => {
             this.successMessage = null;
@@ -93,5 +103,15 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  // Navigate to Sign Up page
+  goToSignup() {
+    this.router.navigate(['/signup']);
+  }
+
+  // Navigate to Home page
+  goToHome() {
+    this.router.navigate(['/']);
   }
 }

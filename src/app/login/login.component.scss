@@ -56,7 +56,7 @@ button {
     align-items: center;
     
     /* Move button slightly to the right */
-    margin-left: 10px; /* Add some margin to push the button right */
+    margin-left: 5px; /* Add some margin to push the button right */
     
     /* Move button slightly down */
     margin-top: 10px; /* Move the button slightly down from its original position */
@@ -160,3 +160,27 @@ mat-card-header {
         font-size: 10px;
     }
 }
+
+/* Adjust form container styling to move it slightly to the left */
+.login-form {
+    margin-right: 15px; /* Move content 10px to the left */
+  }
+
+
+  span.active {
+    color: #d3d3d3;   /* Style the text to look like a link */
+    cursor: pointer;  /* Change cursor to pointer */
+    font-weight: bold; /* Bold text */
+    
+    
+  }
+  
+  span.active:hover {
+    color: #a9a9a9;  /* Optional: Change color on hover */
+  }
+
+
+span.active:not(:last-child) {
+    margin-right: 10px;  /* Add some margin between the elements (adjust to your liking) */
+  }
+

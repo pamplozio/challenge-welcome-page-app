@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-signup',
   standalone: true,
@@ -90,4 +91,16 @@ export class SignupComponent {
       }
     });
   }
+
+  // Navigate to Sign Up page
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  // Navigate to Home page
+  goToHome() {
+    this.router.navigate(['/']);
+  }
+
 }
+

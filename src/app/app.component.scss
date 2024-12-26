@@ -1,21 +1,43 @@
 /* Position the toolbar above other content */
 .mat-toolbar-row {
   position: relative; /* Ensures it's not inside the animation */
-  z-index: 1000; /* This puts it in front of the background animation */
+  z-index: 10; /* This puts it in front of the background animation */
   background-color: black; /* Set background color of the toolbar to black */
   color: white; /* Set text color to white */
+  height: 40px;
 }
 
-/* Ensure the animation container is positioned below the toolbar */
+/* Ensure the background animation container is interactable */
 .background-animation-container {
-  position: relative;
-  z-index: -1; /* Make sure it's behind the toolbar */
+  position: absolute; /* Make sure it covers the full viewport */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1; /* Bring it into the interactable range */
+  pointer-events: auto; /* Allow interaction */
+}
+
+/* Ensure the signup container goes above the toolbar */
+.signup-container {
+  z-index: 1001; /* Make sure it's above the toolbar */
+  position: fixed; /* Keep it fixed at the bottom of the screen */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1); /* Background with transparency */
+  padding: 15px;
+  border-radius: 15px; /* Smooth rounded edges */
 }
 
 /* Ensure the login form appears correctly */
 .login-container {
-  z-index: 10; /* Make sure it's above the animation */
+  z-index: 10; /* Make sure it's above the background animation */
   position: relative;
+}
+
+/* Additional fixes for other elements */
+body, .content-container {
+  position: relative; /* Ensure no accidental overlap */
+  background: transparent; /* Remove background blockages */
 }

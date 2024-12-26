@@ -7,5 +7,5 @@ import { AppComponent } from './app.component';
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: AppComponent }  // Default to signup page
+  { path: '', component: HomeComponent }  // Default to signup page
 ];

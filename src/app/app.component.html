@@ -1,42 +1,32 @@
-<mat-toolbar>
+  <!--you started from here-->
   <!-- Conditionally show the toolbar only if it's not the login page -->
-  <ng-container *ngIf="isLoginPage || isSignupPage">
-    <mat-toolbar-row>
-    </mat-toolbar-row>
-  </ng-container>
+<!-- Toolbar -->
 
+  <!-- Conditionally render toolbar rows -->
+  <mat-toolbar>
+    <ng-container *ngIf="!isLoginPage && !isSignupPage; else hiddenContent">
+      <mat-toolbar-row class="normal-toolbar">
+        <span routerLink="/" routerLinkActive="active" style="cursor: pointer;">Welcome Page</span>
+        <span style="flex: 1 1 auto;"></span>
+        <a mat-button routerLink="/signup" routerLinkActive="active" style="color: white;">Sign Up</a>
+        <a mat-button routerLink="/login" routerLinkActive="active" style="color: white;">Login</a>
+      </mat-toolbar-row>
+    </ng-container>
+    <ng-template #hiddenContent></ng-template>
+  </mat-toolbar>
 
-  <ng-container *ngIf="!isLoginPage && !isSignupPage">
-    <mat-toolbar-row>
-      <span routerLink="/" routerLinkActive="active" style="cursor: pointer;">Welcome Page</span>
-      <span style="flex: 1 1 auto;"></span>
-      <a mat-button routerLink="/signup" routerLinkActive="active" style="color: white;">Sign Up</a>
-      <a mat-button routerLink="/login" routerLinkActive="active" style="color: white;">Login</a>
-    </mat-toolbar-row>
-  </ng-container>
-<!-------------------------->
-
-
-
-
-
-
-</mat-toolbar>
-
+<!-- Background Animation -->
 <div class="background-animation-container">
   <iframe 
     src="https://my.spline.design/planetrotation-1dd7f92644e840b37def2a08468a3dac/"
     frameborder="0"
     width="100%"
     height="100%"
+    style="pointer-events: auto; z-index: 1; position: relative;"
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen; gamepad; microphone; speaker; vr"
   ></iframe>
 </div>
 
-<mat-toolbar>
-  <button mat-button routerLink="/login" routerLinkActive="active">Login</button>
-  <button mat-button routerLink="/signup" routerLinkActive="active">Sign Up</button>
-  <button mat-button routerLink="/" routerLinkActive="active">Home</button>
-</mat-toolbar>
-
+<!-- Main Content -->
 <router-outlet></router-outlet>
+
