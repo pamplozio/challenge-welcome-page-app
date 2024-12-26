@@ -107,6 +107,13 @@ button:hover {
     font-size: 16px;
 }
 
+
+
+
+
+
+
+
 /* Social Media Buttons */
 .social-buttons {
     display: flex;
@@ -135,6 +142,13 @@ button:hover {
         background: rgba(255, 255, 255, 0.3);
     }
 }
+
+.social-button span {
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+}
+
 
 /* Link color default and hover effect */
 .signup-container a {

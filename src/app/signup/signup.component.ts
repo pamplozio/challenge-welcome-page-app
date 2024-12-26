@@ -33,7 +33,13 @@ export class SignupComponent {
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router,
+    private matIconRegistry: MatIconRegistry,  // Inject MatIconRegistry
+    private domSanitizer: DomSanitizer // Inject DomSanitizer for icon URLs
+  ) {
     this.signupForm = this.fb.group({
       name: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -41,6 +47,18 @@ export class SignupComponent {
       password: ['', [Validators.required, Validators.minLength(6)]],
       repassword: ['', [Validators.required]], // Add repassword control for validation
     });
+
+    // Register the Google icon from an SVG path (update path accordingly)
+    this.matIconRegistry.addSvgIcon(
+      'google',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/google.svg')
+    );
+
+        // Register the Facebook icon from an SVG path (adjusted path)
+        this.matIconRegistry.addSvgIcon(
+          'facebook',
+          this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
+        );
   }
 
   onSubmit(): void {
