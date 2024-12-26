@@ -10,7 +10,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';  // Import Router for navigation
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import FontAwesomeModule
-
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -60,7 +59,6 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    // Only check for invalid credentials AFTER login is attempted
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
   
@@ -88,21 +86,25 @@ export class LoginComponent {
           // Handle failure (e.g., invalid credentials)
           console.error('Login failed', error);
           if (error.status === 401) {
-            this.errorMessage = 'Invalid login credentials'; // Show error message
+            // Invalid login credentials, show error
+            this.errorMessage = 'Invalid email or password. Please try again.'; 
           } else {
-            this.errorMessage = 'An error occurred. Please try again.';
+            // General error message if the backend doesn't return a specific error
+            this.errorMessage = 'Invalid email or password. Please try again.';
           }
   
           // Reset the form after failed login
           this.loginForm.reset();
           this.clearFormControls();
   
-          // Optional: Clear error message after some time
+          // Optionally: Clear error message after some time
           setTimeout(() => {
             this.errorMessage = null;
           }, 6000); // Error message disappears after 6 seconds
         }
       );
+    } else {
+      this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }
 
