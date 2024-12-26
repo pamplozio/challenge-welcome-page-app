@@ -9,6 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';  // Import Router for navigation
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // Import FontAwesomeModule
+
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +26,7 @@ import { Router } from '@angular/router';  // Import Router for navigation
     MatButtonModule,
     MatCardModule,
     MatToolbarModule,
+    FontAwesomeModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -34,12 +39,26 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder, 
     private authService: AuthService,
-    private router: Router  // Inject Router service to handle navigation
+    private router: Router,  // Inject Router service to handle navigation
+    private matIconRegistry: MatIconRegistry,  // Inject MatIconRegistry
+    private domSanitizer: DomSanitizer // Inject DomSanitizer for icon URLs
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+
+    // Register the Google icon from an SVG path (update path accordingly)
+    this.matIconRegistry.addSvgIcon(
+      'google',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('icons/google.svg')
+    );
+
+        // Register the Facebook icon from an SVG path (adjusted path)
+        this.matIconRegistry.addSvgIcon(
+          'facebook',
+          this.domSanitizer.bypassSecurityTrustResourceUrl('icons/facebook.svg')
+        );
   }
 
   onSubmit(): void {

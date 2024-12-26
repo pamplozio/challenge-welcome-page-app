@@ -41,14 +41,21 @@
         </div>
 
         <!-- Social Media Buttons -->
-        <div class="social-buttons">
-          <button mat-raised-button color="accent" class="social-button" type="button">
-            <mat-icon>google</mat-icon> Login with Google
-          </button>
-          <button mat-raised-button color="primary" class="social-button" type="button">
-            <mat-icon>facebook</mat-icon> Login with Facebook
-          </button>
-        </div>
+        <!-- Facebook Button -->
+<button class="social-button">
+  <div class="icon-container">
+    <mat-icon svgIcon="facebook"></mat-icon>
+  </div>
+  <span>Login with Facebook</span>
+</button>
+
+<!-- Google Button -->
+<button class="social-button">
+  <div class="icon-container">
+    <mat-icon svgIcon="google"></mat-icon>
+  </div>
+  <span>Login with Google</span>
+</button>
       </form>
     </mat-card-content>
   </mat-card>
