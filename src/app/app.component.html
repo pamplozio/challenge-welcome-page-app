@@ -27,6 +27,8 @@
   ></iframe>
 </div>
 
+<!-- Bottom Toolbar to Hide Spline Logo --> <mat-toolbar *ngIf="!isLoginPage && !isSignupPage" class="bottom-toolbar"> </mat-toolbar>
+
 <!-- Main Content -->
 <router-outlet></router-outlet>
 
