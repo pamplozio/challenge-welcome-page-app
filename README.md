@@ -1,59 +1,109 @@
-# WelcomePageApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+# Welcome-Page-App
 
-## Development server
+Welcome to the **Welcome-Page-App**, a welcome page designed for a mobile app that is compatible with iOS and Android. This app makes use of several modern technologies to ensure a seamless user experience and efficient mobile compatibility.
 
-To start a local development server, run:
+## Technologies Used
+
+- **Material Design 3**: For UI principles, ensuring a consistent and intuitive design system.
+- **Angular 19**: For managing the app’s structure and data flow.
+- **Angular Material 19**: For pre-built UI components such as buttons, inputs, dialogs, and more.
+- **Ionic & CapacitorJS**: For cross-platform mobile compatibility, allowing the app to run natively on iOS and Android.
+- **Docker**: For containerization and easy deployment.
+
+## Project Structure
+
+The app consists of several components and modules for different functionalities, structured as follows:
+
+- **app.component.html, app.component.scss, app.component.ts**: These files define the main app structure and styling.
+- **Login**:
+  - **login.component.html**
+  - **login.component.scss**
+  - **login.component.ts**: Implements user authentication (login) using Swagger API.
+- **Signup**:
+  - **signup.component.html**
+  - **signup.component.scss**
+  - **signup.component.ts**: Implements user registration using Swagger API.
+- **Home**:
+  - **home.component.html**: Displays the full-screen animation.
+  - **home.component.scss**: Styling for the home page.
+  - **home.component.ts**: Manages animation and other related functionalities.
+
+## Features
+
+- **Animation**: A simple, interactable animation created using **Spline**, displayed on the Welcome page.
+- **Authentication**:
+  - Sign Up tab: For user registration.
+  - Login tab: For user authentication.
+  - Both **Login** and **Sign Up** features are implemented using APIs provided by the **Swagger** JSON file. It contains the necessary endpoints for user authentication (simplified integration).
+
+## Running the Application
+
+Follow the instructions below to run the app locally for both web and mobile versions.
+
+### Running the Web Application Locally:
+
+1. Clone this repository:
+
+```bash
+git clone https://github.com/pamplozio/challenge-welcome-page-app.git
+cd challenge-welcome-page-app
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Run the application:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+You can access the app at [http://localhost:4200](http://localhost:4200).
 
-## Code scaffolding
+### Running on Mobile Using Capacitor:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Install Ionic and CapacitorJS:
 
 ```bash
-ng generate --help
+npm install -g @ionic/cli @capacitor/core @capacitor/cli
 ```
 
-## Building
-
-To build the project run:
+2. Build the app for mobile:
 
 ```bash
-ng build
+ionic build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+3. Sync the app with Capacitor:
 
 ```bash
-ng test
+ionic cap sync
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+4. Open it in your preferred native IDE (Xcode for iOS or Android Studio for Android):
 
 ```bash
-ng e2e
+ionic cap open ios
+# or
+ionic cap open android
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### AI Interactions
+Some of the instructions for developing and structuring this project were generated with the assistance of ChatGPT. These resources helped provide guidance for various aspects of the project:
 
-## Additional Resources
+- [Instruction 1](https://chatgpt.com/share/676d9a51-3168-8005-887c-0ed111f96f38)
+- [Instruction 2](https://chatgpt.com/share/676d9bda-6f48-8005-b647-3fe538c1b5b0)
+- [Instruction 3](https://chatgpt.com/share/676d9c1a-0f94-8005-96f7-c44234aca7e2)
+- [Instruction 4](https://chatgpt.com/share/676d9c4e-ff38-8005-bf44-dc764e6b9cb7)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### GitHub Repository
+Clone the repository for your local development:
+
+```bash
+git clone https://github.com/pamplozio/challenge-welcome-page-app.git
+```
+
